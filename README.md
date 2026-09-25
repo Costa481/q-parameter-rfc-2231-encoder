@@ -24,3 +24,10 @@ The trade-off is simplicity: the encoder always uses UTF-8 for non-ASCII values 
 - Extended syntax values must use UTF-8. The decoder rejects other charsets with an error.
 - The encoder splits long values at 78 characters, which may leave a final fragment shorter than the others. Continuation fragments are numbered starting at zero; the first fragment of a non-ASCII value uses the `name*0*` extended form while subsequent fragments use plain `name*1`, `name*2`, etc.
 - Decoding a single fragment is the caller's responsibility after merging continuation fragments. `decodeParameter` decodes one value and does not combine fragments.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
