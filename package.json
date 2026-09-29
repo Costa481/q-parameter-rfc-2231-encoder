@@ -1,6 +1,6 @@
 {
   "name": "q-parameter-rfc-2231-encoder",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Encodes and decodes RFC 2231 continuation and charset parameters for MIME header fields.",
   "type": "module",
   "main": "src/index.js",
